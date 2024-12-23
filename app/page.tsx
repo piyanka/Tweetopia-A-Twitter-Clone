@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { FaBell, FaEarlybirds, FaHome, FaSearch, FaRobot, FaEnvelope, FaUsers, FaUser, FaCrown, FaBuilding, FaEllipsisH, FaEllipsisV } from "react-icons/fa";
+import { FaBell, FaEarlybirds, FaHome, FaSearch, FaRobot, FaEnvelope, FaUsers, FaUser, FaCrown, FaBuilding, FaEllipsisH} from "react-icons/fa";
 // import {GoHomeFill } from "react-icons/go";
 // import {IoSearchOutline, IoNotifications, IoPeopleSharp, IoPerson} from "react-icons/io5";
 // import {TiMessages} from "react-icons/ti";
@@ -9,14 +9,15 @@ import { FaBell, FaEarlybirds, FaHome, FaSearch, FaRobot, FaEnvelope, FaUsers, F
 // import {CgOrganisation, CgMoreO} from "react-icons/cg";
 // import {BsPostcardFill} from "react-icons/bs";
 import { Inter } from "next/font/google";
+import FeedCard from "@/components/FeedCard";
 // import { FaEllipsis } from "react-icons/fa6";
 const inter = Inter({ subsets: ["latin"] });
+
 interface TweetopiaSidebarButton {
   title: string;
   icon: React.ReactNode;
 
 }
-
 
 const sidebarMenuItems: TweetopiaSidebarButton[] = [
   {
@@ -47,10 +48,10 @@ const sidebarMenuItems: TweetopiaSidebarButton[] = [
     title: "Premium",
     icon: <FaCrown />
   },
-  {
-    title: "Verified Orgs",
-    icon: <FaBuilding />
-  },
+  // {
+  //   title: "Verified Orgs",
+  //   icon: <FaBuilding />
+  // },
   {
     title: "Profile",
     icon: <FaUser />
@@ -59,15 +60,6 @@ const sidebarMenuItems: TweetopiaSidebarButton[] = [
     title: "More",
     icon: <FaEllipsisH />
   },
-
-
-
-
-
-
-
-
-
 
 ]
 
@@ -80,7 +72,7 @@ export default function Home() {
             <FaEarlybirds />
           </div>
 
-          <div className="mt-2 text-2xl ">
+          <div className="mt-2 text-1xl pr-4">
             <ul>
               {sidebarMenuItems.map((item) => (
                 <li className="flex justify-start  w-fit items-center gap-6 rounded-full hover:bg-gray-800 p-2 cursor-pointer transition-all" key={item.title}>
@@ -92,26 +84,26 @@ export default function Home() {
               ))}
 
             </ul>
-            <button className="bg-white text-black font-semibold py-2 px-4  w-60 rounded-full  hover:bg-gray-100 border-gray-300 mt-2">Post</button>
+            <div className="mt-3">
+              <button className="bg-white text-black font-semibold py-2 px-4  w-60 rounded-full  hover:bg-gray-100 border-gray-300">Post</button>
+            </div>
 
-            <div className="flex w-61 items-center justify-between p-2 rounded-full hover:bg-gray-800 cursor-pointer transition-all mt-20">
-              {/* Profile Picture */}
+            <div className="flex w-full items-center justify-between p-2 rounded-full hover:bg-gray-800 cursor-pointer transition-all mt-24">
+
               <div className="flex items-center gap-3">
                 <img
-                  src="https://images.pexels.com/photos/3792581/pexels-photo-3792581.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" // Replace with the user's profile picture URL
+                  src="https://images.pexels.com/photos/3792581/pexels-photo-3792581.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   alt="Profile"
                   className="w-10 h-10 rounded-full"
                 />
                 <div className="hidden md:block">
-                  {/* Username */}
                   <p className="font-semibold text-sm">Priyanka Yadav</p>
-                  {/* Handle */}
                   <p className="text-gray-500 text-xs">@Priyank75428296</p>
                 </div>
               </div>
 
-              {/* More Options */}
-              <FaEllipsisV className="ml-2" />
+
+              <FaEllipsisH className="ml-2 mr-3" />
 
             </div>
 
@@ -120,7 +112,9 @@ export default function Home() {
 
 
         </div>
-        <div className="col-span-6 border-r-[0.2px] border-l-[0.2px] border-gray-800"></div>
+        <div className="col-span-6 border-r-[0.2px] border-l-[0.2px] border-gray-800">
+          <FeedCard/>
+        </div>
         <div className="col-span-3 "></div>
       </div>
     </div>
