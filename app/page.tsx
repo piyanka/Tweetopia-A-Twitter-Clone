@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { FaBell, FaEarlybirds, FaHome, FaSearch, FaRobot, FaEnvelope, FaUsers, FaUser, FaCrown, FaBuilding, FaEllipsisH} from "react-icons/fa";
+import { FaBell, FaEarlybirds, FaHome, FaSearch, FaRobot, FaEnvelope, FaUsers, FaUser, FaCrown, FaBuilding, FaEllipsisH } from "react-icons/fa";
 // import {GoHomeFill } from "react-icons/go";
 // import {IoSearchOutline, IoNotifications, IoPeopleSharp, IoPerson} from "react-icons/io5";
 // import {TiMessages} from "react-icons/ti";
@@ -66,13 +66,13 @@ const sidebarMenuItems: TweetopiaSidebarButton[] = [
 export default function Home() {
   return (
     <div className={inter.className}>
-      <div className="grid grid-cols-12 h-screen w-screen px-40">
+      <div className="border border-gray-800  grid grid-cols-12 h-screen w-screen px-40">
         <div className="col-span-3 ">
           <div className="text-4xl h-fit w-fit hover:bg-gray-800 rounded-full p-2 cursor-pointer transition-all">
             <FaEarlybirds />
           </div>
 
-          <div className="mt-2 text-1xl pr-4">
+          <div className="mt-2 text-2xl pr-4">
             <ul>
               {sidebarMenuItems.map((item) => (
                 <li className="flex justify-start  w-fit items-center gap-6 rounded-full hover:bg-gray-800 p-2 cursor-pointer transition-all" key={item.title}>
@@ -112,10 +112,15 @@ export default function Home() {
 
 
         </div>
-        <div className="col-span-6 border-r-[0.2px] border-l-[0.2px] border-gray-800">
-          <FeedCard/>
+        <div className="col-span-5 border-r-[0.2px] border-l-[0.2px] border-gray-800">
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          
         </div>
-        <div className="col-span-3 "></div>
+        <div className="col-span-5 "></div>
       </div>
     </div>
 
