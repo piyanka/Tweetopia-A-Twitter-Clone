@@ -1,16 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { FaBell, FaEarlybirds, FaHome, FaSearch, FaRobot, FaEnvelope, FaUsers, FaUser, FaCrown, FaBuilding, FaEllipsisH } from "react-icons/fa";
-// import {GoHomeFill } from "react-icons/go";
-// import {IoSearchOutline, IoNotifications, IoPeopleSharp, IoPerson} from "react-icons/io5";
-// import {TiMessages} from "react-icons/ti";
-// import {TbMessageChatbot} from "react-icons/tb";
-// import {MdWorkspacePremium, MdOutlineManageAccounts} from "react-icons/md";
-// import {CgOrganisation, CgMoreO} from "react-icons/cg";
-// import {BsPostcardFill} from "react-icons/bs";
+
 import { Inter } from "next/font/google";
 import FeedCard from "@/components/FeedCard";
-// import { FaEllipsis } from "react-icons/fa6";
+
 const inter = Inter({ subsets: ["latin"] });
 
 interface TweetopiaSidebarButton {
@@ -72,7 +66,7 @@ export default function Home() {
             <FaEarlybirds />
           </div>
 
-          <div className="mt-2 text-2xl pr-4">
+          <div className="mt-2 text-2xl pr-4 font-semibold">
             <ul>
               {sidebarMenuItems.map((item) => (
                 <li className="flex justify-start  w-fit items-center gap-6 rounded-full hover:bg-gray-800 p-2 cursor-pointer transition-all" key={item.title}>
@@ -112,7 +106,7 @@ export default function Home() {
 
 
         </div>
-        <div className="col-span-5 border-r-[0.2px] border-l-[0.2px] border-gray-800">
+        <div className="col-span-5 border-r-[0.2px] border-l-[0.2px] h-screen overflow-scroll scrollbar-hide border-gray-800">
           <FeedCard />
           <FeedCard />
           <FeedCard />
