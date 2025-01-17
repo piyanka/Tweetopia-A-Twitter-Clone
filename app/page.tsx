@@ -4,6 +4,11 @@ import { FaBell, FaEarlybirds, FaHome, FaSearch, FaRobot, FaEnvelope, FaUsers, F
 
 import { Inter } from "next/font/google";
 import FeedCard from "@/components/FeedCard";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import LoginPage from "./loginPage";
+
+
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -106,16 +111,27 @@ export default function Home() {
 
 
         </div>
+
         <div className="col-span-5 border-r-[0.2px] border-l-[0.2px] h-screen overflow-scroll scrollbar-hide border-gray-800">
           <FeedCard />
           <FeedCard />
           <FeedCard />
           <FeedCard />
           <FeedCard />
-          
+
         </div>
-        <div className="col-span-5 "></div>
+
+        <div className="col-span-5">
+          <GoogleOAuthProvider clientId="1020024037932-siad11cpc4qg9lgmg6a8m77rm1ho5mva.apps.googleusercontent.com">
+            <div>
+              <h1>Welcome to My App</h1>
+              <LoginPage />
+            </div>
+          </GoogleOAuthProvider>
+        </div>
+
       </div>
+
     </div>
 
   );
