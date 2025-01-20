@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Image from "next/image";
 import { FaBell, FaEarlybirds, FaHome, FaSearch, FaRobot, FaEnvelope, FaUsers, FaUser, FaCrown, FaBuilding, FaEllipsisH } from "react-icons/fa";
 
 import { Inter } from "next/font/google";
 import FeedCard from "@/components/FeedCard";
+// import { GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import LoginPage from "./loginPage";
 
@@ -63,6 +64,9 @@ const sidebarMenuItems: TweetopiaSidebarButton[] = [
 ]
 
 export default function Home() {
+  
+  
+  
   return (
     <div className={inter.className}>
       <div className="border border-gray-800  grid grid-cols-12 h-screen w-screen px-40">
@@ -121,13 +125,18 @@ export default function Home() {
 
         </div>
 
-        <div className="col-span-5">
+        <div className="col-span-4">
           <GoogleOAuthProvider clientId="1020024037932-siad11cpc4qg9lgmg6a8m77rm1ho5mva.apps.googleusercontent.com">
-            <div>
-              <h1>Welcome to My App</h1>
-              <LoginPage />
+            <div className="p-5 border border-gray-800 rounded-lg flex flex-col items-center justify-center">
+              <div className="m-4 text-center">
+                <h1 className="my-2 text-2xl">New to My App?</h1>
+                <LoginPage />
+              </div>
             </div>
+
           </GoogleOAuthProvider>
+
+          {/* <GoogleLogin  onSuccess={(cred) => console.log(cred)}/> */}
         </div>
 
       </div>
