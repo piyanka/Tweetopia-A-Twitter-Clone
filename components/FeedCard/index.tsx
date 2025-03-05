@@ -75,13 +75,13 @@ const FeedCard: React.FC = () => {
                         </button>
 
                         {/* Bookmark */}
-                        <button className="flex items-center hover:text-yellow-500 cursor-pointer transition-all">
+                        <button className="flex items-center hover:text-yellow-500 cursor-pointer transition-all" aria-label="Open menu">
                             <FaRegBookmark />
                             {/* <span>Bookmark</span> */}
                         </button>
 
                         {/* Share */}
-                        <button className="flex items-center  hover:text-gray-700 cursor-pointer transition-all">
+                        <button className="flex items-center  hover:text-gray-700 cursor-pointer transition-all" aria-label="Open menu">
                             <IoMdShareAlt />
                             {/* <span>Share</span> */}
                         </button>
