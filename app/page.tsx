@@ -7,6 +7,7 @@ import FeedCard from "@/components/FeedCard";
 // import { GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import LoginPage from "./loginPage";
+import { useCurrentUser } from "@/hooks/user";
 
 
 
@@ -64,9 +65,9 @@ const sidebarMenuItems: TweetopiaSidebarButton[] = [
 ]
 
 export default function Home() {
-  
-  
-  
+  // const { user} = useCurrentUser();
+
+  // console.log(user)
   return (
     <div className={inter.className}>
       <div className="border border-gray-800  grid grid-cols-12 h-screen w-screen px-40">
