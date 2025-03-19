@@ -1,3 +1,4 @@
+"use client";
 import React, { useCallback } from "react";
 import Image from "next/image";
 import { FaBell, FaEarlybirds, FaHome, FaSearch, FaRobot, FaEnvelope, FaUsers, FaUser, FaCrown, FaBuilding, FaEllipsisH } from "react-icons/fa";
@@ -6,8 +7,10 @@ import { Inter } from "next/font/google";
 import FeedCard from "@/components/FeedCard";
 // import { GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import LoginPage from "./loginPage";
+// import LoginPage from "./loginPage/page";
 import { useCurrentUser } from "@/hooks/user";
+import toast from "react-hot-toast";
+import GoogleAuth from "@/components/GoogleAuth";
 
 
 
@@ -65,9 +68,8 @@ const sidebarMenuItems: TweetopiaSidebarButton[] = [
 ]
 
 export default function Home() {
-  // const { user} = useCurrentUser();
-
-  // console.log(user)
+  const { user } = useCurrentUser();
+  console.log(user)
   return (
     <div className={inter.className}>
       <div className="border border-gray-800  grid grid-cols-12 h-screen w-screen px-40">
@@ -76,7 +78,7 @@ export default function Home() {
             <FaEarlybirds />
           </div>
 
-          <div className="mt-2 text-2xl pr-4 font-semibold">
+          <div className="mt-2 text-xl pr-4 font-semibold">
             <ul>
               {sidebarMenuItems.map((item) => (
                 <li className="flex justify-start  w-fit items-center gap-6 rounded-full hover:bg-gray-800 p-2 cursor-pointer transition-all" key={item.title}>
@@ -92,24 +94,16 @@ export default function Home() {
               <button className="bg-white text-black font-semibold py-2 px-4  w-60 rounded-full  hover:bg-gray-100 border-gray-300">Post</button>
             </div>
 
-            <div className="flex w-full items-center justify-between p-2 rounded-full hover:bg-gray-800 cursor-pointer transition-all mt-24">
-
-              <div className="flex items-center gap-3">
-                <img
-                  src="https://images.pexels.com/photos/3792581/pexels-photo-3792581.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt="Profile"
-                  className="w-10 h-10 rounded-full"
-                />
-                <div className="hidden md:block">
-                  <p className="font-semibold text-sm">Priyanka Yadav</p>
-                  <p className="text-gray-500 text-xs">@Priyank75428296</p>
+            {user && (
+              <div className="absolute bottom-5 flex gap-2 items-center bg-slate-800 px-3 py-2 rounded-full">
+                {user && user.profileImageURL && (<Image className="rounded-full" src={user?.profileImageURL} alt="user-image" height={50} width={50} />)}
+                <div>
+                  <h3 className="text-xl">
+                    {user.firstName} {user.lastName}
+                  </h3>
                 </div>
               </div>
-
-
-              <FaEllipsisH className="ml-2 mr-3" />
-
-            </div>
+            )}
 
           </div>
 
@@ -127,17 +121,16 @@ export default function Home() {
         </div>
 
         <div className="col-span-4">
-          <GoogleOAuthProvider clientId="1020024037932-siad11cpc4qg9lgmg6a8m77rm1ho5mva.apps.googleusercontent.com">
-            <div className="p-5 border border-gray-800 rounded-lg flex flex-col items-center justify-center">
-              <div className="m-4 text-center">
-                <h1 className="my-2 text-2xl">New to My App?</h1>
-                <LoginPage />
+          {!user && (<div className="p-5 border border-gray-800 rounded-lg flex flex-col items-center justify-center">
+            <div className="m-4 text-center">
+              <h1 className="my-2 text-2xl">New to My App?</h1>
+              <div>
+                <GoogleAuth />
               </div>
             </div>
+          </div>)}
 
-          </GoogleOAuthProvider>
 
-          {/* <GoogleLogin  onSuccess={(cred) => console.log(cred)}/> */}
         </div>
 
       </div>

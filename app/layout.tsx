@@ -2,6 +2,18 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Inter, Quicksand } from "next/font/google";
+
+import { Toaster } from 'react-hot-toast';
+
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import QueryProvider from "@/components/queryProvider";
+
+const inter = Inter({ subsets: ["latin"] });
+const quickSand = Quicksand({ subsets: ["latin"] });
+
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,7 +39,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Toaster />
+        <QueryProvider >
+          <GoogleOAuthProvider clientId="1020024037932-siad11cpc4qg9lgmg6a8m77rm1ho5mva.apps.googleusercontent.com">
+            {children}
+            <ReactQueryDevtools />
+          </GoogleOAuthProvider>
+        </QueryProvider>
+
       </body>
     </html>
   );

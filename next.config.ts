@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
     remotePatterns: [
       {
@@ -11,6 +10,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "via.placeholder.com",
+      },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com", // ✅ Added Google-hosted images
       },
     ],
   },
@@ -24,14 +27,6 @@ const nextConfig: NextConfig = {
             key: "Cross-Origin-Opener-Policy",
             value: "same-origin allow-popups",
           },
-          // {
-          //   key: "Cross-Origin-Embedder-Policy",
-          //   value: "unsafe-none", // 🔹 Temporary fix for COEP issues
-          // },
-          // {
-          //   key: "Cross-Origin-Resource-Policy",
-          //   value: "cross-origin", // 🔹 Temporary fix for COEP issues
-          // },
         ],
       },
     ];

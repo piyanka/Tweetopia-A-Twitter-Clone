@@ -5,9 +5,12 @@ import { toast } from "react-hot-toast";
 import { verifyUserGoogleTokenQuery } from "@/graphql/query/user";
 
 import { graphqlClient } from "../clients/api";
+// import { useQueryClient } from '@tanstack/react-query';
 
 export default function GoogleAuth() {
-  const handleLoginWithGoogle = useCallback(async (cred) => {
+  // const queryClient = useQueryClient();
+
+  const handleLoginWithGoogle = useCallback(async (cred:any) => {
     if (!cred.credential) return toast.error(`Google token not found`);
 
     const googleToken = cred.credential;
@@ -24,6 +27,7 @@ export default function GoogleAuth() {
     if (verifyGoogleToken)
       window.localStorage.setItem("__twitter_token", verifyGoogleToken);
 
+    // await queryClient.invalidateQueries({ queryKey: ['current-user'] });
 
   }, []);
 
@@ -32,5 +36,6 @@ export default function GoogleAuth() {
       onSuccess={handleLoginWithGoogle}
       onError={() => console.error('Login failed')}
     />
+    
   );
 }
