@@ -1,15 +1,14 @@
 "use client";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import Image from "next/image";
 import { FaBell, FaEarlybirds, FaHome, FaSearch, FaRobot, FaEnvelope, FaUsers, FaUser, FaCrown, FaBuilding, FaEllipsisH } from "react-icons/fa";
-
 import { Inter } from "next/font/google";
 import FeedCard from "@/components/FeedCard";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useCurrentUser } from "@/hooks/user";
-import toast from "react-hot-toast";
 import GoogleAuth from "@/components/GoogleAuth";
 import { BiImageAlt } from "react-icons/bi";
+import { useCreateTweet, useGetAllTweets } from "@/hooks/tweet";
+import { Tweet } from "@/gql/graphql";
 
 
 
@@ -68,15 +67,24 @@ const sidebarMenuItems: TweetopiaSidebarButton[] = [
 
 export default function Home() {
   const { user } = useCurrentUser();
-  
-  const handleSelectImage = useCallback(()=> {
+  const { tweets = [] } = useGetAllTweets();
+  const { mutate } = useCreateTweet()
+
+  const [content, setContent] = useState("")
+  const handleSelectImage = useCallback(() => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("accept", "image/*");
     input.click();
   }, []);
 
- 
+  const handleCreateTweet = useCallback(() => {
+    mutate({
+      content,
+    });
+  }, [content, mutate]);
+
+
   return (
     <div className={inter.className}>
       <div className="border border-gray-800  grid grid-cols-12 h-screen w-screen px-40">
@@ -135,22 +143,23 @@ export default function Home() {
                 <div className="col-span-11">
                   <textarea className="w-full bg-transparent text-xl px-3 border-slate-700"
                     placeholder="What's happening?"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
                     rows={4}>
-                    </textarea>
+                  </textarea>
                   <div className="mt-2 flex justify-between items-center">
-                    <BiImageAlt onClick={handleSelectImage} className="text-xl"/>
-                    <button className="bg-[#1d9bf0] font-semibold text-sm py-2 px-4 rounded-full">Tweet</button>
+                    <BiImageAlt onClick={handleSelectImage} className="text-xl" />
+                    <button onClick={handleCreateTweet} className="bg-[#1d9bf0] font-semibold text-sm py-2 px-4 rounded-full">Tweet</button>
                   </div>
                 </div>
               </div>
 
             </div>
           </div>
-          <FeedCard />
-          <FeedCard />
-          <FeedCard />
-          <FeedCard />
-          <FeedCard />
+          {
+            tweets?.map(tweet => tweet ? <FeedCard key={tweet?.id} data={tweet as Tweet} /> : null)
+          }
+
 
         </div>
 
