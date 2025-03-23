@@ -5,6 +5,7 @@ import { IoMdShareAlt } from "react-icons/io";
 import { BsThreeDots } from "react-icons/bs";
 import { FiMoreHorizontal, FiMoreVertical } from "react-icons/fi";
 import { Tweet } from "@/gql/graphql";
+import Link from "next/link";
 
 interface FeedCardProps {
     data: Tweet
@@ -29,7 +30,7 @@ const FeedCard: React.FC<FeedCardProps> = (props) => {
                 {/* Content Section */}
                 <div className="col-span-11">
                     {/* User Info */}
-                    <h5>{data.author?.firstName} {data.author?.lastName}</h5>
+                    <h5><Link href={`/profile/${data.author?.id}`}>{data.author?.firstName} {data.author?.lastName}</Link></h5>
 
                     {/* Tweet Content */}
                     <p>{data.content}</p>
@@ -71,7 +72,7 @@ const FeedCard: React.FC<FeedCardProps> = (props) => {
                             {/* <span>Share</span> */}
                         </button>
 
-    
+
                     </div>
 
                 </div>
