@@ -1,11 +1,12 @@
 "use client";
-import React from "react";
+import React, { useMemo } from "react";
 import { FaBell, FaCrown, FaEarlybirds, FaEllipsisH, FaEnvelope, FaHome, FaSearch, FaUser, FaUsers } from "react-icons/fa";
 import { FaRobot } from "react-icons/fa6";
 import Image from "next/image";
 
 import { useCurrentUser } from "@/hooks/user";
 import GoogleAuth from "../GoogleAuth";
+import Link from "next/link";
 
 interface TwitterlayoutProps {
     children: React.ReactNode;
@@ -13,54 +14,62 @@ interface TwitterlayoutProps {
 interface TweetopiaSidebarButton {
     title: string;
     icon: React.ReactNode;
+    link: string
 
 }
-const sidebarMenuItems: TweetopiaSidebarButton[] = [
-    {
-        title: "Home",
-        icon: <FaHome />
-    },
-    {
-        title: "Explore",
-        icon: <FaSearch />
-    },
-    {
-        title: "Notifications",
-        icon: <FaBell />
-    },
-    {
-        title: "Messages",
-        icon: <FaEnvelope />
-    },
-    {
-        title: "Flutter",
-        icon: <FaRobot />
-    },
-    {
-        title: "Communities",
-        icon: <FaUsers />
-    },
-    {
-        title: "Premium",
-        icon: <FaCrown />
-    },
-    // {
-    //   title: "Verified Orgs",
-    //   icon: <FaBuilding />
-    // },
-    {
-        title: "Profile",
-        icon: <FaUser />
-    },
-    {
-        title: "More",
-        icon: <FaEllipsisH />
-    },
 
-]
 const Twitterlayout: React.FC<TwitterlayoutProps> = (props) => {
     const { user } = useCurrentUser();
 
+    const sidebarMenuItems: TweetopiaSidebarButton[] = useMemo(() => [
+        {
+            title: "Home",
+            icon: <FaHome />,
+            link: `/`
+        },
+        {
+            title: "Explore",
+            icon: <FaSearch />,
+            link: `/`
+        },
+        {
+            title: "Notifications",
+            icon: <FaBell />,
+            link: `/`
+        },
+        {
+            title: "Messages",
+            icon: <FaEnvelope />,
+            link: `/`
+        },
+        {
+            title: "Flutter",
+            icon: <FaRobot />,
+            link: `/`
+        },
+        {
+            title: "Communities",
+            icon: <FaUsers />,
+            link: `/`
+        },
+        {
+            title: "Premium",
+            icon: <FaCrown />,
+            link: `/`
+        },
+
+        {
+            title: "Profile",
+            icon: <FaUser />,
+            link: `/profile/${user?.id}`
+        },
+        {
+            title: "More",
+            icon: <FaEllipsisH />,
+            link:   `/`
+        },
+
+    ], [user?.id]);
 
     return (
         <div>
@@ -74,9 +83,11 @@ const Twitterlayout: React.FC<TwitterlayoutProps> = (props) => {
                         <div className="mt-2 text-xl pr-4 font-semibold">
                             <ul>
                                 {sidebarMenuItems.map((item) => (
-                                    <li className="flex justify-start  w-fit items-center gap-6 rounded-full hover:bg-gray-800 p-2 cursor-pointer transition-all" key={item.title}>
-                                        <span>{item.icon}</span>
-                                        <span>{item.title}</span>
+                                    <li key={item.title}>
+                                        <Link className="flex justify-start  w-fit items-center gap-6 rounded-full hover:bg-gray-800 p-2 cursor-pointer transition-all" href={item.link}>
+                                            <span>{item.icon}</span>
+                                            <span>{item.title}</span>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>
