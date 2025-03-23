@@ -11,7 +11,7 @@ interface Props {
   params: { id: string };
 }
 
-// ✅ Fetch data inside a Server Component
+
 export default async function UserProfilePage({ params }: Props) {
   const id =  params.id;
 
