@@ -66,7 +66,7 @@ const Twitterlayout: React.FC<TwitterlayoutProps> = (props) => {
         {
             title: "More",
             icon: <FaEllipsisH />,
-            link:   `/`
+            link: `/`
         },
 
     ], [user?.id]);
@@ -121,17 +121,46 @@ const Twitterlayout: React.FC<TwitterlayoutProps> = (props) => {
                 </div>
 
                 <div className="col-span-4">
-                    {!user && (<div className="p-5 border border-gray-800 rounded-lg flex flex-col items-center justify-center">
+                    {!user ? (<div className="p-5 border border-gray-800 rounded-lg flex flex-col items-center justify-center">
                         <div className="m-4 text-center">
                             <h1 className="my-2 text-2xl">New to My App?</h1>
                             <div>
                                 <GoogleAuth />
                             </div>
                         </div>
-                    </div>)}
+                    </div>
+                    ) : (
+                        <div className="px-4 py-3 bg-slate-800 rounded-lg">
+                            <h1 className="my-2 text-2xl mb-5">Users you may know</h1>
+                            {
+                                user?.recommendedUsers?.map((el) => (
+                                    <div className="flex items-center gap-3 mt-2" key={el?.id}>
+                                        {el?.profileImageURL && (
+                                            <Image
+                                                src={el.profileImageURL}
+                                                alt="user-image"
+                                                className="rounded-full"
+                                                width={60}
+                                                height={60}
+                                            />
+                                        )}
+                                        <div>
+                                            <div className="text-lg ">
+                                                {el?.firstName} {el?.lastName}
+                                            </div>
+                                            <Link href={`/profile/${el?.id}`} className="bg-white text-black text-sm px-5 py-1 rounded-lg ">View</Link>
+                                        </div>
+                                    </div>
+                                ))}
 
 
-                </div>
+                        </div>
+                    )
+
+
+
+
+                    }</div>
             </div>
         </div>
 
