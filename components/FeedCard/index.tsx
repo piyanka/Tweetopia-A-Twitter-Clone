@@ -35,6 +35,10 @@ const FeedCard: React.FC<FeedCardProps> = (props) => {
                     {/* Tweet Content */}
                     <p>{data.content}</p>
 
+                    {
+                        data.imageURL && <Image src={data.imageURL} alt="image" width={400} height={400}/>
+                    }
+
                     {/* Action Buttons */}
                     <div className="flex justify-between mt-4 text-gray-500 text-sm">
                         {/* Reply */}

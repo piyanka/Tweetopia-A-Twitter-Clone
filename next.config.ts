@@ -13,7 +13,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "lh3.googleusercontent.com", // ✅ Added Google-hosted images
+        hostname: "lh3.googleusercontent.com", 
+      },
+      {
+        protocol: "https",
+        hostname: "priyanka-twitter-dev.s3.ap-south-1.amazonaws.com", 
       },
     ],
   },
