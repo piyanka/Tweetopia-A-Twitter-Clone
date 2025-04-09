@@ -30,5 +30,5 @@ npm install
 ```bash
   npm run dev
 ```
-### **Explore the [Backend Code Base](https://github.com/piyanka/Tweetopia-A-Twitter-Clone-Backend?tab=readme-ov-file#tweetopia-a-twitter-clone-backend)
-**
+### **Explore the [Backend Code Base](https://github.com/piyanka/Tweetopia-A-Twitter-Clone-Backend?tab=readme-ov-file#tweetopia-a-twitter-clone-backend)**
+
